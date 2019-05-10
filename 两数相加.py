@@ -11,24 +11,29 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        num1 = 0
-        num2 = 0
-        i = 0
-        while l1 != None:
-            num1 += l1.val*pow(10,i)
-            l1 = l1.next
-            i += 1
-        i = 0
-        while l2 != None:
-            num2 += l2.val*pow(10,i)
-            l2 = l2.next
-            i += 1
-        num = num1 + num2
-        nums = [int(x) for x in str(num)[::-1]]
-        rtype = ListNode(nums[0])
-        tail = rtype
-        for i in nums[1:] :
-            temp = ListNode(i)
-            tail.next = temp
-            tail= temp
-        return rtype
+        cary = 0
+        chain = ListNode(0)
+        tail = chain
+        while l1 != None or l2 != None:
+            if l1 != None:
+                x = l1.val
+            else:
+                x = 0
+            if l2 != None:
+                y = l2.val
+            else:
+                y = 0
+
+            reminder = (x + y + cary) % 10
+            cary = (x + y + cary) // 10
+            temp = ListNode(reminder)
+            chain.next = temp
+            chain = temp
+            if l1 != None:
+                l1 = l1.next
+
+            if l2 != None:
+                l2 = l2.next
+        if cary >= 1:
+            chain.next = ListNode(1)
+        return tail.next
