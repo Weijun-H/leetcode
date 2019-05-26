@@ -1,5 +1,4 @@
 class Solution(object):
-    def permute(self, nums) :
     def multiply(self, num1, num2):
         """
         :type num1: str
