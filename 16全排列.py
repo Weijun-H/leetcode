@@ -12,4 +12,4 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.permute([1,2,3]))
+    print(s.permute([1,2,1]))
